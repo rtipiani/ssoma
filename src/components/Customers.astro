@@ -1,0 +1,102 @@
+---
+const slides = [
+  { src: "/images/customers/31-applus-clientes-safety-control.png", alt: "Logo applus" },
+  { src: "/images/customers/32-verfrut-clientes-safety-control.png", alt: "Logo verfrut" },
+  { src: "/images/customers/33-trane-clientes-safety-control.png", alt: "Logo trane" },
+  { src: "/images/customers/1-dominion-clientes-safety-control.png", alt: "Logo dominion" },
+  { src: "/images/customers/15-huawei-clientes-safety-control.png", alt: "Logo huawei" },
+  { src: "/images/customers/4-services-solutions-clientes-safety-control.png", alt: "Logo solutions" },
+  { src: "/images/customers/5-cobra-clientes-safety-control.png", alt: "Logo cobra" },
+  { src: "/images/customers/6-engie-clientes-safety-control.png", alt: "Logo engie" },
+  { src: "/images/customers/7-oca-global-clientes-safety-control.png", alt: "Logo global" },
+  { src: "/images/customers/8-alteliza-clientes-safety-control.png", alt: "Logo alteliza" },
+  { src: "/images/customers/9-concar-clientes-safety-control.png", alt: "Logo concar" },
+  { src: "/images/customers/10-lari-clientes-safety-control.png", alt: "Logo lari" },
+  { src: "/images/customers/11-quanta-services-clientes-safety-control.png", alt: "Logo quanta" },
+  { src: "/images/customers/12-trianon-clientes-safety-control.png", alt: "Logo trianon" },
+  { src: "/images/customers/13-can-engie-clientes-safety-control.png", alt: "Logo can" },
+  { src: "/images/customers/14-yipd-telecon-clientes-safety-control.png", alt: "Logo yipd" }
+];
+---
+
+<section class="bg-gray-50 py-16">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-8">
+        <h3 class="text-xl font-semibold text-info">Nuestros Clientes</h3>
+        <h2 class="text-3xl font-bold text-info">Ellos confían en nosotros</h2>
+      </div>
+  
+      <!-- Slider container -->
+      <div class="relative overflow-hidden w-full">
+        <div id="logoSlider" class="flex transition-transform duration-500 ease-in-out">
+          {slides.map((slide) => (
+            <div class="flex-none w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 p-4">
+              <img 
+                src={slide.src} 
+                alt={slide.alt} 
+                class="max-w-full h-auto mx-auto" 
+                />
+            </div>
+          ))}
+        </div>
+  
+        <!-- Botones de navegación -->
+        <button
+          id="prevLogoBtn"
+          class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-300 text-primary hover:bg-info hover:text-white rounded-full w-12 h-12 flex items-center justify-center"
+        >
+          ←
+        </button>
+        <button
+          id="nextLogoBtn"
+          class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-300 text-primary hover:bg-info hover:text-white rounded-full w-12 h-12 flex items-center justify-center"
+        >
+          →
+        </button>
+      </div>
+    </div>
+  </section>
+  
+  <script>
+    const logoSlider = document.getElementById('logoSlider') as HTMLElement;
+    let logoCurrentIndex = 0;
+    const logoSlides = logoSlider ? logoSlider.children : [];
+    const totalLogoSlides = logoSlides.length;
+  
+    function updateLogoSliderPosition() {
+      const slideWidth = logoSlides[0].offsetWidth; // Determina el ancho de cada slide
+      const newTransform = -logoCurrentIndex * slideWidth; // Ajuste de la posición con base en el ancho de cada slide
+      logoSlider.style.transform = `translateX(${newTransform}px)`;
+    }
+  
+    function goToNextLogoSlide() {
+      // Calcula el siguiente índice dependiendo del tamaño de pantalla
+      if (window.innerWidth >= 1024) { // lg y xl, 4 items a la vez
+        logoCurrentIndex = (logoCurrentIndex + 4) % totalLogoSlides;
+      } else if (window.innerWidth >= 768) { // md, 2 items a la vez
+        logoCurrentIndex = (logoCurrentIndex + 3) % totalLogoSlides;
+      } else { // sm, 1 item a la vez
+        logoCurrentIndex = (logoCurrentIndex + 1) % totalLogoSlides;
+      }
+      updateLogoSliderPosition();
+    }
+  
+    function goToPrevLogoSlide() {
+      // Calcula el índice anterior dependiendo del tamaño de pantalla
+      if (window.innerWidth >= 1024) { // lg y xl, 4 items a la vez
+        logoCurrentIndex = (logoCurrentIndex - 4 + totalLogoSlides) % totalLogoSlides;
+      } else if (window.innerWidth >= 768) { // md, 2 items a la vez
+        logoCurrentIndex = (logoCurrentIndex - 3 + totalLogoSlides) % totalLogoSlides;
+      } else { // sm, 1 item a la vez
+        logoCurrentIndex = (logoCurrentIndex - 1 + totalLogoSlides) % totalLogoSlides;
+      }
+      updateLogoSliderPosition();
+    }
+  
+    // Botones de navegación
+    document.getElementById('prevLogoBtn').addEventListener('click', goToPrevLogoSlide);
+    document.getElementById('nextLogoBtn').addEventListener('click', goToNextLogoSlide);
+  
+    // Auto slide
+    setInterval(goToNextLogoSlide, 3000); // Cambia cada 3 segundos
+  </script>
