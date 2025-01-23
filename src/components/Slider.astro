@@ -1,93 +1,101 @@
-<div class="relative overflow-hidden">
+---
+const slides = [
+    {
+        title: 'Seguridad y Salud',
+        subtitle: 'en el Trabajo',
+        description: 'Expertos en la gestión de Seguridad y Salud en el Trabajo, a todo nivel.',
+        buttonText: 'Ver más',
+        imageUrl: '/images/ssoma_slide1.jpg'
+    },
+    {
+        title: 'Título de la Diapositiva 2',
+        subtitle: '',
+        description: 'Texto descriptivo de la segunda diapositiva, que proporciona más detalles.',
+        buttonText: 'Ver más',
+        imageUrl: '/images/ssoma_slide2.jpg'
+    },
+    {
+        title: 'Título de la Diapositiva 3',
+        subtitle: '',
+        description: 'Información relevante de la tercera diapositiva, diseñada para llamar la atención.',
+        buttonText: 'Ver más',
+        imageUrl: '/images/ssoma_slide3.jpg'
+    }
+];
+---
+<section class="relative overflow-hidden">
     <div id="textSlider" class="flex transition-transform duration-1000 ease-in-out">
-        <!-- Slide 1 -->
-        <div class="flex-shrink-0 w-full h-[450px] sm:h-[450px] md:h-[650px] lg:h-[700px] flex items-center justify-start text-white p-8 bg-cover bg-center relative" style="background-image: url('/images/ssoma_slide1.jpg');">
-            <!-- Overlay -->
-            <div class="absolute inset-0 bg-black opacity-40"></div>
-  
-            <!-- Contenido de texto encima de la imagen y el overlay -->
-            <div class="relative z-10 text-left sm:ml-12 md:ml-28 lg:ml-48">
-                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-2">
-                    Seguridad y Salud 
-                    <span class="block sm:inline">en el Trabajo</span>
-                </h2>
-                <hr class="my-2 border-secondary border-t-2 w-2/4">
-                <p class="text-sm md:text-base lg:text-lg mb-4">Expertos en la gestión de Seguridad y Salud en el Trabajo, a todo nivel.</p>
-                <a href="#" class="px-4 py-2 bg-secondary text-primary font-semibold rounded hover:bg-primary">Ver más</a>
+        {slides.map((slide) => (
+            <div class="flex-shrink-0 w-full h-[450px] sm:h-[450px] md:h-[650px] lg:h-[700px] flex items-center justify-start text-white p-8 bg-cover bg-center relative" style={`background-image: url('${slide.imageUrl}');`}>
+                <div class="absolute inset-0 bg-black opacity-40"></div>
+                <div class="relative z-10 text-left sm:ml-12 md:ml-28 lg:ml-48">
+                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-2">
+                        {slide.title}
+                        {slide.subtitle && <span class="block sm:inline">{slide.subtitle}</span>}
+                    </h2>
+                    <hr class="my-2 border-secondary border-t-2 w-2/4" />
+                    <p class="text-sm md:text-base lg:text-lg mb-4">{slide.description}</p>
+                    <a href="#" class="px-4 py-2 bg-secondary text-primary font-semibold rounded hover:bg-primary">
+                        {slide.buttonText}
+                    </a>
+                </div>
             </div>
-        </div>
-
-        <!-- Slide 2 -->
-        <div class="flex-shrink-0 w-full h-[450px] sm:h-[450px] md:h-[650px] lg:h-[700px] flex items-center justify-start text-white p-8 bg-cover bg-center relative" style="background-image: url('/images/ssoma_slide2.jpg');">
-            <!-- Overlay -->
-            <div class="absolute inset-0 bg-black opacity-40"></div>
-
-            <!-- Contenido de texto encima de la imagen y el overlay -->
-            <div class="relative z-10 text-left sm:ml-12 md:ml-28 lg:ml-48">
-                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-2">Título de la Diapositiva 2</h2>
-                <hr class="my-2 border-secondary border-t-2 w-2/4">
-                <p class="text-sm md:text-base lg:text-lg mb-4">Texto descriptivo de la segunda diapositiva, que proporciona más detalles.</p>
-                <a href="#" class="px-4 py-2 bg-secondary text-primary font-semibold rounded hover:bg-primary">Ver más</a>
-            </div>
-        </div>
-
-        <!-- Slide 3 -->
-        <div class="flex-shrink-0 w-full h-[450px] sm:h-[450px] md:h-[650px] lg:h-[700px] flex items-center justify-start text-white p-8 bg-cover bg-center relative" style="background-image: url('/images/ssoma_slide3.jpg');">
-        <!-- Overlay -->
-            <div class="absolute inset-0 bg-black opacity-40"></div>
-
-            <!-- Contenido de texto encima de la imagen y el overlay -->
-            <div class="relative z-10 text-left sm:ml-12 md:ml-28 lg:ml-48">
-                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-2">Título de la Diapositiva 3</h2>
-                <hr class="my-2 border-secondary border-t-2 w-2/4">
-                <p class="text-sm md:text-base lg:text-lg mb-4">Información relevante de la tercera diapositiva, diseñada para llamar la atención.</p>
-                <a href="#" class="px-4 py-2 bg-secondary text-primary font-semibold rounded hover:bg-primary">Ver más</a>
-            </div>
-        </div>
+        ))}
     </div>
-  
-    <!-- Flechas de navegación -->
-    <button
-      id="prevTextBtn"
-      class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-300 bg-opacity-45 text-primary hover:bg-info hover:text-white rounded-full w-12 h-12 flex items-center justify-center"
-    >
-      ←
-    </button>
-    <button
-      id="nextTextBtn"
-      class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-300 bg-opacity-45 text-primary hover:bg-info hover:text-white rounded-full w-12 h-12 flex items-center justify-center"
-    >
-      →
-    </button>
-</div>
-  
 
-<!-- JavaScript para el slider automático -->
+    <button id="prevTextBtn" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-300 bg-opacity-45 text-primary hover:bg-info hover:text-white rounded-full w-12 h-12 flex items-center justify-center">
+        ←
+    </button>
+    <button id="nextTextBtn" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-300 bg-opacity-45 text-primary hover:bg-info hover:text-white rounded-full w-12 h-12 flex items-center justify-center">
+        →
+    </button>
+</section>
+
 <script>
     const textSlider = document.getElementById('textSlider');
-let textCurrentIndex = 0;
-const textSlides = textSlider.children;
-const totalTextSlides = textSlides.length;
+    const textSlides = textSlider?.children ?? [];
+    const totalTextSlides = textSlides.length;
 
-function updateTextSliderPosition() {
-  const newTransform = -textCurrentIndex * 100; // 100% width for each slide
-  textSlider.style.transform = `translateX(${newTransform}%)`;
-}
+    let textCurrentIndex = 0;
+    const slideInterval = 5000;
+    let autoSlideTimer;
 
-function goToNextTextSlide() {
-  textCurrentIndex = (textCurrentIndex + 1) % totalTextSlides;
-  updateTextSliderPosition();
-}
+    const updateTextSliderPosition = () => {
+        textSlider.style.transform = `translateX(${-textCurrentIndex * 100}%)`;
+        textSlider.style.transition = "transform 0.5s ease";
+    };
 
-function goToPrevTextSlide() {
-  textCurrentIndex = (textCurrentIndex - 1 + totalTextSlides) % totalTextSlides;
-  updateTextSliderPosition();
-}
+    const goToNextTextSlide = () => {
+        textCurrentIndex = (textCurrentIndex + 1) % totalTextSlides;
+        updateTextSliderPosition();
+        resetAutoSlide();
+    };
 
-// Auto slide for textSlider
-setInterval(goToNextTextSlide, 5000); // Change every 5 seconds
+    const goToPrevTextSlide = () => {
+        textCurrentIndex = (textCurrentIndex - 1 + totalTextSlides) % totalTextSlides;
+        updateTextSliderPosition();
+        resetAutoSlide();
+    };
 
-// Event listeners for manual navigation
-document.getElementById('prevTextBtn').addEventListener('click', goToPrevTextSlide);
-document.getElementById('nextTextBtn').addEventListener('click', goToNextTextSlide);
+    const startAutoSlide = () => {
+        autoSlideTimer = setInterval(goToNextTextSlide, slideInterval);
+    };
+
+    const stopAutoSlide = () => {
+        clearInterval(autoSlideTimer);
+    };
+
+    const resetAutoSlide = () => {
+        stopAutoSlide();
+        startAutoSlide();
+    };
+
+    document.getElementById('prevTextBtn')?.addEventListener('click', goToPrevTextSlide);
+    document.getElementById('nextTextBtn')?.addEventListener('click', goToNextTextSlide);
+
+    if (totalTextSlides > 0) {
+        startAutoSlide();
+    } else {
+        console.warn('No hay diapositivas en el slider.');
+    }
 </script>

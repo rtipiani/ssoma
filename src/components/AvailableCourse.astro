@@ -1,0 +1,71 @@
+---
+const capacitaciones = [
+    {
+        imagen: "/images/seguridad-vial-para-motociclistas.webp",
+        alt: "Seguridad en Motocicletas",
+        titulo: "Seguridad en Conducción de Motocicletas",
+        descripcion: "El motociclismo seguro requiere equilibrio, coordinación y buen juicio...",
+        info: "Capacitaciones en trabajos de alto riesgo",
+        duracion: "04 hrs",
+    },
+    {
+        imagen: "/images/identificacion.jpg",
+        alt: "IPERC",
+        titulo: "Identificación de Peligros y Evaluación del Riesgo (IPERC)",
+        descripcion: "Metodología Virtual: El curso tiene una duración de 2 hrs...",
+        info: "Capacitaciones en trabajos de alto riesgo",
+        duracion: "02 hrs",
+    },
+    {
+        imagen: "/images/analisis.jpg",
+        alt: "ATS",
+        titulo: "Análisis de Trabajo Seguro (ATS)",
+        descripcion: "Es una herramienta de gestión de seguridad y salud ocupacional...",
+        info: "Capacitaciones en trabajos de alto riesgo",
+        duracion: "02 hrs",
+    },
+    {
+        imagen: "/images/altura.jpg",
+        alt: "Supervisor de Altura",
+        titulo: "Supervisor de Trabajos en Altura (Nivel II – Avanzado)",
+        descripcion: "Los Trabajos en altura es una de las actividades laborales...",
+        info: "Capacitaciones en trabajos de alto riesgo",
+        duracion: "16 hrs",
+    },
+];
+---
+<section class="container mx-auto p-8 py-4 mt-8">
+    <h2 class="text-2xl font-bold text-center text-info mb-12">
+        CAPACITACIONES DISPONIBLES
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {capacitaciones.map((curso) => (
+            <div class="bg-white border rounded-lg shadow-md overflow-hidden">
+                <img src={curso.imagen} alt={curso.alt} class="w-full h-36 object-cover"/>
+                <div class="p-4">
+                    <h3 class="text-lg font-bold text-info mb-2">
+                        {curso.titulo}
+                    </h3>
+                    <p class="text-sm text-gray-600 mb-3">
+                        {curso.descripcion}
+                    </p>
+                    <div class="flex items-center text-sm text-green-600 mb-3">
+                        <span>
+                            <i class="fa-solid fa-folder-open"></i>
+                        </span>
+                        <span class="ml-2">{curso.info}</span>
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600 mb-4">
+                        <span>
+                            <i class="fa-solid fa-clock"></i>
+                        </span>
+                        <span class="ml-2">{curso.duracion}</span>
+                    </div>
+                    <button class="w-full bg-info text-white py-2 rounded-lg hover:bg-primary">
+                        Ver Curso
+                    </button>
+                </div>
+            </div>
+        ))}
+    </div>
+</section>
