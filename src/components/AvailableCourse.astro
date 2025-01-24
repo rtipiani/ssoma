@@ -2,6 +2,7 @@
 const capacitaciones = [
     {
         imagen: "/images/seguridad-vial-para-motociclistas.webp",
+        url: "/training/seguridad-en-conduccion",
         alt: "Seguridad en Motocicletas",
         titulo: "Seguridad en Conducción de Motocicletas",
         descripcion: "El motociclismo seguro requiere equilibrio, coordinación y buen juicio...",
@@ -61,9 +62,9 @@ const capacitaciones = [
                         </span>
                         <span class="ml-2">{curso.duracion}</span>
                     </div>
-                    <button class="w-full bg-info text-white py-2 rounded-lg hover:bg-primary">
+                    <a href={curso.url} class="w-full bg-info text-white py-2 rounded-lg hover:bg-primary">
                         Ver Curso
-                    </button>
+                    </a>
                 </div>
             </div>
         ))}
