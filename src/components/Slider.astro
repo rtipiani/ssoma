@@ -5,21 +5,35 @@ const slides = [
         subtitle: 'en el Trabajo',
         description: 'Expertos en la gestión de Seguridad y Salud en el Trabajo, a todo nivel.',
         buttonText: 'Ver más',
-        imageUrl: '/images/ssoma_slide1.jpg'
+        imageUrl: '/images/ssoma-slide1.png'
     },
     {
-        title: 'Título de la Diapositiva 2',
-        subtitle: '',
-        description: 'Texto descriptivo de la segunda diapositiva, que proporciona más detalles.',
+        title: 'Outsourcing de Gestión',
+        subtitle: 'de Seguridad y Salud en el Trabajo',
+        description: 'Expertos en la gestión de Seguridad y Salud en el Trabajo, a todo nivel.',
         buttonText: 'Ver más',
-        imageUrl: '/images/ssoma_slide2.jpg'
+        imageUrl: '/images/ssoma-slide2.png'
     },
     {
-        title: 'Título de la Diapositiva 3',
-        subtitle: '',
-        description: 'Información relevante de la tercera diapositiva, diseñada para llamar la atención.',
+        title: 'Certificaciones',
+        subtitle: 'de Competencias Laborales',
+        description: 'Expertos en la gestión de Seguridad y Salud en el Trabajo, a todo nivel.',
         buttonText: 'Ver más',
-        imageUrl: '/images/ssoma_slide3.jpg'
+        imageUrl: '/images/ssoma-slide3.png'
+    },
+    {
+        title: 'Auditorías',
+        subtitle: 'del SGSST Virtual',
+        description: 'Expertos en la gestión de Seguridad y Salud en el Trabajo, a todo nivel.',
+        buttonText: 'Ver más',
+        imageUrl: '/images/ssoma-slide4.png'
+    },
+    {
+        title: 'Capacitaciones',
+        subtitle: '',
+        description: 'Expertos en la gestión de Seguridad y Salud en el Trabajo, a todo nivel.',
+        buttonText: 'Ver más',
+        imageUrl: '/images/ssoma-slide5.png'
     }
 ];
 ---
@@ -42,7 +56,6 @@ const slides = [
             </div>
         ))}
     </div>
-
     <button id="prevTextBtn" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-300 bg-opacity-45 text-primary hover:bg-info hover:text-white rounded-full w-12 h-12 flex items-center justify-center">
         ←
     </button>
@@ -50,7 +63,6 @@ const slides = [
         →
     </button>
 </section>
-
 <script>
     const textSlider = document.getElementById('textSlider');
     const textSlides = textSlider?.children ?? [];
