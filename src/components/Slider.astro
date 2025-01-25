@@ -49,18 +49,18 @@ const slides = [
                     </h2>
                     <hr class="my-2 border-secondary border-t-2 w-2/4" />
                     <p class="text-sm md:text-base lg:text-lg mb-4">{slide.description}</p>
-                    <a href="#" class="px-4 py-2 bg-secondary text-primary font-semibold rounded hover:bg-primary">
+                    <a href="#" class="px-4 py-2 bg-white text-primary font-semibold rounded hover:bg-primary">
                         {slide.buttonText}
                     </a>
                 </div>
             </div>
         ))}
     </div>
-    <button id="prevTextBtn" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-300 bg-opacity-45 text-primary hover:bg-info hover:text-white rounded-full w-12 h-12 flex items-center justify-center">
-        ←
+    <button id="prevTextBtn" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-85 text-primary hover:bg-info hover:text-white rounded-full w-12 h-12 flex items-center justify-center">
+        <i class="fas fa-arrow-left"></i>
     </button>
-    <button id="nextTextBtn" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-300 bg-opacity-45 text-primary hover:bg-info hover:text-white rounded-full w-12 h-12 flex items-center justify-center">
-        →
+    <button id="nextTextBtn" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-85 text-primary hover:bg-info hover:text-white rounded-full w-12 h-12 flex items-center justify-center">
+        <i class="fas fa-arrow-right"></i>
     </button>
 </section>
 <script>
