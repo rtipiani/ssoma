@@ -46,9 +46,9 @@ const slides = [
     <div id="textSlider" class="flex transition-transform duration-1000 ease-in-out">
         {slides.map((slide, index) => (
             <div class="flex-shrink-0 w-full h-[450px] sm:h-[450px] md:h-[650px] lg:h-[700px] flex items-center justify-start text-white p-8 bg-cover bg-center relative" style={{ backgroundImage: `url(${slide.imageUrl})` }}>
-                <div class="absolute inset-0 bg-black opacity-40"></div>
+                <div class="absolute inset-0 bg-black opacity-65"></div>
                 <div class="relative z-10 text-left sm:ml-12 md:ml-28 lg:ml-48">
-                    <h1 class="text-2xl md:text-3xl lg:text-6xl font-bold mb-2">
+                    <h1 class="text-2xl md:text-4xl lg:text-6xl font-bold mb-2">
                         {slide.title}
                         {slide.subtitle && <span class="block sm:inline">{slide.subtitle}</span>}
                     </h1>
@@ -62,18 +62,16 @@ const slides = [
         ))}
     </div>
 
-    <!-- Lista de títulos a la derecha -->
-    <div class="absolute right-0 top-0 mt-72 mr-28 z-10">
-        <ul class="space-y-2 text-gray-300" id="textSlideLinks">
+    <div class="absolute right-0 top-0 mt-72 mr-28 z-10 hidden xl:block">
+        <ul class="space-y-2 text-gray-400" id="textSlideLinks">
             {slides.map((slide, index) => (
-                <li class="cursor-pointer hover:text-primary">
+                <li class="cursor-pointer hover:text-white">
                     {slide.title} {slide.subtitle && `- ${slide.subtitle}`}
                 </li>
             ))}
         </ul>
     </div>
 
-    <!-- Botones de navegación -->
     <button id="prevTextBtn" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-info bg-opacity-85 text-white hover:bg-primary hover:text-white rounded-full w-12 h-12 flex items-center justify-center">
         <i class="fas fa-arrow-left"></i>
     </button>
@@ -89,15 +87,21 @@ const slides = [
     
     let textCurrentIndex = 0;
 
-    // Definir el intervalo del slide (en milisegundos)
-    const slideInterval = 5000;  // 5 segundos
-
-    // Variable para almacenar el temporizador
+    const slideInterval = 5000;
     let autoSlideTimer;
+
+    const updateActiveTextLink = () => {
+        document.querySelectorAll("#textSlideLinks li").forEach((li, index) => {
+            li.classList.toggle("text-white", index === textCurrentIndex);
+            li.classList.toggle("font-bold", index === textCurrentIndex);
+            li.classList.toggle("text-gray-300", index !== textCurrentIndex);
+        });
+    };
 
     const updateTextSliderPosition = () => {
         textSlider.style.transform = `translateX(${-textCurrentIndex * 100}%)`;
         textSlider.style.transition = "transform 0.5s ease";
+        updateActiveTextLink();
     };
 
     const goToNextTextSlide = () => {
@@ -119,12 +123,10 @@ const slides = [
     };
 
     const startAutoSlide = () => {
-        // Iniciar el slider automático usando setInterval
         autoSlideTimer = setInterval(goToNextTextSlide, slideInterval);
     };
 
     const stopAutoSlide = () => {
-        // Detener el slider automático
         clearInterval(autoSlideTimer);
     };
 
@@ -133,7 +135,6 @@ const slides = [
         startAutoSlide();
     };
 
-    // Asignamos el manejador de eventos a cada elemento de la lista
     document.querySelectorAll("#textSlideLinks li").forEach((li, index) => {
         li.addEventListener("click", () => goToSlide(index));
     });
@@ -142,6 +143,7 @@ const slides = [
     document.getElementById('nextTextBtn')?.addEventListener('click', goToNextTextSlide);
 
     if (totalTextSlides > 0) {
+        updateActiveTextLink();
         startAutoSlide();
     } else {
         console.warn('No hay diapositivas en el slider.');
