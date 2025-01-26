@@ -44,14 +44,14 @@ const slides = [
 ---
 <section class="relative overflow-hidden">
     <div id="textSlider" class="flex transition-transform duration-1000 ease-in-out">
-        {slides.map((slide) => (
-            <div class="flex-shrink-0 w-full h-[450px] sm:h-[450px] md:h-[650px] lg:h-[700px] flex items-center justify-start text-white p-8 bg-cover bg-center relative" style={`background-image: url('${slide.imageUrl}');`}>
+        {slides.map((slide, index) => (
+            <div class="flex-shrink-0 w-full h-[450px] sm:h-[450px] md:h-[650px] lg:h-[700px] flex items-center justify-start text-white p-8 bg-cover bg-center relative" style={{ backgroundImage: `url(${slide.imageUrl})` }}>
                 <div class="absolute inset-0 bg-black opacity-40"></div>
                 <div class="relative z-10 text-left sm:ml-12 md:ml-28 lg:ml-48">
-                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-2">
+                    <h1 class="text-2xl md:text-3xl lg:text-6xl font-bold mb-2">
                         {slide.title}
                         {slide.subtitle && <span class="block sm:inline">{slide.subtitle}</span>}
-                    </h2>
+                    </h1>
                     <hr class="my-2 border-t-2 w-2/4" />
                     <p class="text-sm md:text-base lg:text-lg mb-4">{slide.description}</p>
                     <a href={slide.url} class="px-4 py-2 bg-info text-white font-semibold rounded hover:bg-primary">
@@ -61,6 +61,19 @@ const slides = [
             </div>
         ))}
     </div>
+
+    <!-- Lista de títulos a la derecha -->
+    <div class="absolute right-0 top-0 mt-72 mr-28 z-10">
+        <ul class="space-y-2 text-gray-300" id="textSlideLinks">
+            {slides.map((slide, index) => (
+                <li class="cursor-pointer hover:text-primary">
+                    {slide.title} {slide.subtitle && `- ${slide.subtitle}`}
+                </li>
+            ))}
+        </ul>
+    </div>
+
+    <!-- Botones de navegación -->
     <button id="prevTextBtn" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-info bg-opacity-85 text-white hover:bg-primary hover:text-white rounded-full w-12 h-12 flex items-center justify-center">
         <i class="fas fa-arrow-left"></i>
     </button>
@@ -68,13 +81,18 @@ const slides = [
         <i class="fas fa-arrow-right"></i>
     </button>
 </section>
+
 <script>
     const textSlider = document.getElementById('textSlider');
     const textSlides = textSlider?.children ?? [];
     const totalTextSlides = textSlides.length;
-
+    
     let textCurrentIndex = 0;
-    const slideInterval = 5000;
+
+    // Definir el intervalo del slide (en milisegundos)
+    const slideInterval = 5000;  // 5 segundos
+
+    // Variable para almacenar el temporizador
     let autoSlideTimer;
 
     const updateTextSliderPosition = () => {
@@ -94,11 +112,19 @@ const slides = [
         resetAutoSlide();
     };
 
+    const goToSlide = (index) => {
+        textCurrentIndex = index;
+        updateTextSliderPosition();
+        resetAutoSlide();
+    };
+
     const startAutoSlide = () => {
+        // Iniciar el slider automático usando setInterval
         autoSlideTimer = setInterval(goToNextTextSlide, slideInterval);
     };
 
     const stopAutoSlide = () => {
+        // Detener el slider automático
         clearInterval(autoSlideTimer);
     };
 
@@ -106,6 +132,11 @@ const slides = [
         stopAutoSlide();
         startAutoSlide();
     };
+
+    // Asignamos el manejador de eventos a cada elemento de la lista
+    document.querySelectorAll("#textSlideLinks li").forEach((li, index) => {
+        li.addEventListener("click", () => goToSlide(index));
+    });
 
     document.getElementById('prevTextBtn')?.addEventListener('click', goToPrevTextSlide);
     document.getElementById('nextTextBtn')?.addEventListener('click', goToNextTextSlide);
