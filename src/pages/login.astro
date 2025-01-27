@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | SSOMA</title>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
-    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
+<body class="bg-black flex items-center justify-center min-h-screen relative">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-sm z-10 relative">
         <div class="flex justify-center mb-6">
             <img src="/images/logo.png" alt="Logo" class="w-24 h-auto" />
         </div>
@@ -42,5 +42,8 @@
             <a href="/resend-authorization" class="text-sm text-[#003C8D] hover:underline">Reenviar autorización de registro</a>
         </div>
     </div>
+
+    <!-- Imagen de fondo que ocupa el 100% del alto y ancho -->
+    <img src="/images/fondo-login-background.png" alt="Fondo" class="absolute top-0 left-0 w-full h-full object-cover z-0">
 </body>
 </html>
