@@ -21,7 +21,7 @@
             </a>
         </div>
         <div class="ml-6 hidden lg:block">
-            <a href="/intranet" class="px-4 py-2 bg-info text-white rounded hover:bg-primary">
+            <a href="/login" class="px-4 py-2 bg-info text-white rounded hover:bg-primary">
                 INTRANET
             </a>
         </div>
@@ -50,15 +50,18 @@
         <a href="/valida-tu-certificado" class="block px-4 py-2 text-info hover:bg-gray-100">
             VALIDA TU CERTIFICADO
         </a>
-        <a href="/intranet" class="block px-4 py-2 text-white bg-info hover:bg-primary text-center rounded mt-3">
+        <a href="/login" class="block px-4 py-2 text-white bg-info hover:bg-primary text-center rounded mt-3">
             INTRANET
         </a>
     </div>
     <script>
         const menuButton = document.getElementById('menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-        menuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+    
+        if (menuButton && mobileMenu) {
+            menuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
     </script>
 </nav>
