@@ -45,10 +45,10 @@ const slides = [
 <section class="relative overflow-hidden">
     <div id="textSlider" class="flex transition-transform duration-1000 ease-in-out">
         {slides.map((slide, index) => (
-            <div class="flex-shrink-0 w-full h-[450px] sm:h-[450px] md:h-[650px] lg:h-[700px] flex items-center justify-start text-white p-8 bg-cover bg-center relative" style={{ backgroundImage: `url(${slide.imageUrl})` }}>
+            <div class="flex-shrink-0 w-full h-[550px] md:h-[650px] lg:h-[750px] flex items-center justify-start text-white p-6 bg-cover bg-center relative" style={{ backgroundImage: `url(${slide.imageUrl})` }}>
                 <div class="absolute inset-0 bg-black opacity-65"></div>
-                <div class="relative z-10 text-left sm:ml-12 md:ml-28 lg:ml-48">
-                    <h1 class="text-2xl md:text-4xl lg:text-6xl font-bold mb-2">
+                <div class="relative z-20 text-left sm:ml-12 md:ml-16 lg:ml-32">
+                    <h1 class="text-2xl md:text-4xl lg:text-5xl font-bold mb-2">
                         {slide.title}
                         {slide.subtitle && <span class="block sm:inline">{slide.subtitle}</span>}
                     </h1>
@@ -72,11 +72,11 @@ const slides = [
         </ul>
     </div>
 
-    <button id="prevTextBtn" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-info bg-opacity-85 text-white hover:bg-primary hover:text-white rounded-full w-12 h-12 flex items-center justify-center">
-        <i class="fas fa-arrow-left"></i>
+    <button id="prevTextBtn" class="absolute left-0 top-1/2 transform -translate-y-1/2 text-secondary w-12 h-12 flex items-center justify-center z-50">
+        <i class="fa-solid fa-chevron-left"></i>
     </button>
-    <button id="nextTextBtn" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-info bg-opacity-85 text-white hover:bg-primary hover:text-white rounded-full w-12 h-12 flex items-center justify-center">
-        <i class="fas fa-arrow-right"></i>
+    <button id="nextTextBtn" class="absolute right-0 top-1/2 transform -translate-y-1/2 text-secondary w-12 h-12 flex items-center justify-center z-50">
+        <i class="fa-solid fa-chevron-right"></i>
     </button>
 </section>
 
