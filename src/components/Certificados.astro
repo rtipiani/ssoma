@@ -1,0 +1,173 @@
+---
+const tiposDocumento = [
+  "Carnet de extranjería",
+  "Carnet de refugio",
+  "Carnet de solicitante de refugio",
+  "Carnet temporal de permanencia",
+];
+---
+<section class="max-w-7xl mx-auto px-4 py-8">
+    <div class="text-center mb-8">
+        <h2 class="text-2xl mb-4">
+            ¿Cómo verifico la validez de mi certificado?
+            <br />
+            <a href="https://www.youtube.com/watch?v=kOC1pnxGYRk" target="_blank" class="text-info underline cursor-pointer">
+                Ver video tutorial
+            </a>
+        </h2>
+
+        <div class="relative mx-auto w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl aspect-video">
+            <img src="https://img.youtube.com/vi/kOC1pnxGYRk/maxresdefault.jpg" alt="Vista previa video" class="rounded-lg w-full h-full object-cover shadow-lg">
+            <a href="https://www.youtube.com/watch?v=kOC1pnxGYRk" target="_blank" class="absolute inset-0 flex items-center justify-center backdrop-blur-sm rounded-lg">
+                <i class="fa-regular fa-circle-play text-white text-4xl md:text-5xl"></i>
+            </a>
+        </div>
+    </div>
+
+    <form class="grid gap-4 mb-8" id="validarFormulario">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
+            <select id="tipo-documento" class="border rounded-lg px-4 py-2" required>
+                <option value="">
+                    --Seleccionar--
+                </option>
+                <option value="Carnet de extranjería">
+                    Carnet de extranjería
+                </option>
+                <option value="Carnet de refugio">
+                    Carnet de refugio
+                </option>
+                <option value="Carnet de solicitante de refugio">
+                    Carnet de solicitante de refugio
+                </option>
+                <option value="Carnet temporal de permanencia">
+                    Carnet temporal de permanencia
+                </option>
+            </select>
+            <div class="flex">
+                <input type="text" id="numero-documento" class="border rounded-l-lg px-4 py-2 w-full" placeholder="Nro. de Documento" required />
+                <button type="submit" class="bg-info text-white py-2 px-4 rounded-r-lg cursor-pointer w-auto">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <div id="resultados" class="hidden p-4 bg-gray-100 border border-gray-300 rounded-md">
+        <h3>
+            Resultados de la búsqueda:
+        </h3>
+        <p>
+            <strong class="text-info">
+                Nombres y Apellidos:
+            </strong> 
+            Juan Pérez</p>
+        <p>
+            <strong class="text-info">
+                DNI:
+            </strong> 
+            12345678</p>
+        <button id="verCertificadosBtn" class="text-info font-bold cursor-pointer mt-2">
+            🔍 Ver certificados
+        </button>
+    </div>
+
+    <div id="modal-certificados" class="hidden fixed top-0 left-0 w-full h-full backdrop-blur-md items-center justify-center">
+        <div class="bg-white p-8 rounded-lg shadow-lg max-w-lg w-full">
+            <div class="flex justify-between items-center">
+                <h3 class="text-md font-semibold mb-6">Certificados Obtenidos</h3>
+                <button id="cerrarModalBtn" class="text-info py-2 px-4 rounded-md cursor-pointer">
+                    Cerrar
+                </button>
+            </div>
+            <ul class="list-none p-0">
+                <li class="flex items-center gap-4 mb-3">
+                    Certificado 1
+                    <button class="bg-info text-white py-1 px-3 rounded-md cursor-pointer" id="previsualizarCertificado1">
+                        <i class="fa-solid fa-eye"></i>
+                        Previsualizar
+                    </button>
+                    <button class="bg-info text-white py-1 px-3 rounded-md cursor-pointer" id="descargarCertificado1">
+                        <i class="fa-solid fa-download"></i>
+                        Descargar
+                    </button>
+                </li>
+                <li class="flex items-center gap-4 mb-3">
+                    Certificado 2
+                    <button class="bg-info text-white py-1 px-3 rounded-md cursor-pointer" id="previsualizarCertificado2">
+                        <i class="fa-solid fa-eye"></i>
+                        Previsualizar
+                    </button>
+                    <button class="bg-info text-white py-1 px-3 rounded-md cursor-pointer" id="descargarCertificado2">
+                        <i class="fa-solid fa-download"></i>
+                        Descargar
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("validarFormulario");
+        const resultados = document.getElementById("resultados");
+        const modal = document.getElementById("modal-certificados");
+
+        if (form) {
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+                if (resultados) {
+                    resultados.classList.remove("hidden");
+                }
+            });
+        }
+
+        // Abrir modal
+        const verCertificadosBtn = document.getElementById("verCertificadosBtn");
+        if (verCertificadosBtn && modal) {
+            verCertificadosBtn.addEventListener("click", () => {
+                modal.classList.remove("hidden");
+                modal.classList.add("flex");
+            });
+        }
+
+        // Cerrar modal
+        const cerrarModalBtn = document.getElementById("cerrarModalBtn");
+        if (cerrarModalBtn && modal) {
+            cerrarModalBtn.addEventListener("click", () => {
+                modal.classList.add("hidden");
+                modal.classList.remove("flex");
+            });
+        }
+
+        // Función de previsualización y descarga de certificado 1
+        const previsualizarCertificado1 = document.getElementById("previsualizarCertificado1");
+        if (previsualizarCertificado1) {
+            previsualizarCertificado1.addEventListener("click", () => {
+                alert("Mostrar previsualización del certificado en PDF.");
+            });
+        }
+
+        const descargarCertificado1 = document.getElementById("descargarCertificado1");
+        if (descargarCertificado1) {
+            descargarCertificado1.addEventListener("click", () => {
+                alert("Iniciar descarga del certificado en PDF.");
+            });
+        }
+
+        // Función de previsualización y descarga de certificado 2
+        const previsualizarCertificado2 = document.getElementById("previsualizarCertificado2");
+        if (previsualizarCertificado2) {
+            previsualizarCertificado2.addEventListener("click", () => {
+                alert("Mostrar previsualización del certificado en PDF.");
+            });
+        }
+
+        const descargarCertificado2 = document.getElementById("descargarCertificado2");
+        if (descargarCertificado2) {
+            descargarCertificado2.addEventListener("click", () => {
+                alert("Iniciar descarga del certificado en PDF.");
+            });
+        }
+    });
+</script>
